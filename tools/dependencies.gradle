@@ -2,8 +2,12 @@ ext {
     def supportLibVersion = '25.2.0'
 
     appCompileDependencies = [
+            // support libs
             "com.android.support:appcompat-v7:$supportLibVersion",
-            "com.android.support:design:$supportLibVersion"
+            "com.android.support:design:$supportLibVersion",
+
+            // kotlin
+            "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     ]
 
     appTestCompileDependencies = [
