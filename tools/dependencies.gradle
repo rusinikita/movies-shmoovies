@@ -1,0 +1,12 @@
+ext {
+    def supportLibVersion = '25.2.0'
+
+    appCompileDependencies = [
+            "com.android.support:appcompat-v7:$supportLibVersion",
+            "com.android.support:design:$supportLibVersion"
+    ]
+
+    appTestCompileDependencies = [
+            'junit:junit:4.12'
+    ]
+}
