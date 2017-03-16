@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+kapt {
+    generateStubs = true
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -28,5 +32,6 @@ android {
 
 dependencies {
     compile rootProject.ext.appCompileDependencies
+    kapt rootProject.ext.appAnnotationProcessingDependencies
     testCompile rootProject.ext.appTestCompileDependencies
 }

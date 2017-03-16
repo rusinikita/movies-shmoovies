@@ -1,5 +1,6 @@
 ext {
     def supportLibVersion = '25.2.0'
+    def moxyVersion = "1.4.6"
 
     appCompileDependencies = [
             // support libs
@@ -8,7 +9,14 @@ ext {
 
             // kotlin
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.13"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.13",
+
+            // main libs
+            "com.arello-mobile:moxy-android:$moxyVersion"
+    ]
+
+    appAnnotationProcessingDependencies = [
+            "com.arello-mobile:moxy-compiler:$moxyVersion"
     ]
 
     appTestCompileDependencies = [
