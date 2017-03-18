@@ -16,8 +16,8 @@ import kotlin.properties.ReadWriteProperty
  */
 abstract class BaseMvpFragment<in D> : MvpAppCompatFragment(), LceView<D> {
   protected abstract val layout: Int
-  protected open val elceBehavior: LceBehavior = BaseLceBehavior()
   protected val propertyBinder = PropertyBinder()
+  protected open val elceBehavior: LceBehavior = BaseLceBehavior(propertyBinder)
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     val view = inflater.inflate(layout, container, false)

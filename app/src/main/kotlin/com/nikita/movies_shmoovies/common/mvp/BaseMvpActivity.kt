@@ -14,13 +14,17 @@ import kotlin.properties.ReadWriteProperty
  */
 abstract class BaseMvpActivity<in D> : MvpAppCompatActivity(), LceView<D> {
   protected abstract val layout: Int
-  protected open val elceBehavior: LceBehavior = BaseLceBehavior()
   protected val propertyBinder = PropertyBinder()
+  protected open val elceBehavior: LceBehavior = BaseLceBehavior(propertyBinder)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(layout)
+    elceBehavior.init(findView(android.R.id.content))
+    initView()
   }
+
+  open fun initView() {}
 
   override fun setContent(content: D) {
     elceBehavior.switchToContent()

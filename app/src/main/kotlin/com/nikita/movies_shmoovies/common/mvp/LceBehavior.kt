@@ -26,7 +26,7 @@ class BaseLceBehavior(propertyBinder: PropertyBinder) : LceBehavior {
   override fun init(rootView: ViewGroup) {
     contentView = rootView.findView(R.id.content_view)
     progressBar = rootView.context.layoutInflater.inflate(R.layout.view_progress, rootView, false)
-    refreshView = rootView.findView(R.id.refresh_view)
+    refreshView = rootView.findViewOptional(R.id.refresh_view)
 
     errorView = ErrorView(rootView.context)
 
@@ -35,6 +35,7 @@ class BaseLceBehavior(propertyBinder: PropertyBinder) : LceBehavior {
   }
 
   override fun switchToContent() {
+    refreshView?.isRefreshing = false
     LceAnimator.showContent(
       loadingView = progressBar,
       contentView = contentView,
