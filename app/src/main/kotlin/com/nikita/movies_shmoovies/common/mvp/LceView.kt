@@ -3,6 +3,7 @@ package com.nikita.movies_shmoovies.common.mvp
 import android.content.Context
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
+import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
@@ -15,7 +16,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
  */
 
 @StateStrategyType(SingleStateStrategy::class)
-interface LceView<in D> {
+interface LceView<in D> : MvpView {
   fun setContent(content: D)
   fun switchToLoading(pullToRefresh: Boolean)
   fun switchToError(errorDesc: ErrorDesc)

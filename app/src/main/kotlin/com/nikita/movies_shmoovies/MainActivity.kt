@@ -2,27 +2,37 @@ package com.nikita.movies_shmoovies
 
 import android.support.design.widget.BottomNavigationView
 import android.widget.TextView
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
+import com.nikita.movies_shmoovies.common.mvp.LceView
+import com.nikita.movies_shmoovies.common.utils.findView
 
-class MainActivity : BaseMvpActivity<Unit>() {
+interface MainView: LceView<String>
+
+class MainActivity : BaseMvpActivity<String>(), MainView {
   override val layout: Int = R.layout.activity_main
-  private var mTextMessage: TextView? = null
 
-  private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+  @InjectPresenter
+  lateinit var presenter: MainPresenter
+
+  @ProvidePresenter
+  fun providePresenter() = MainPresenter()
+
+  private val textMessage: TextView by bindView(R.id.message)
+  private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
     when (item.itemId) {
       R.id.navigation_home -> {
-        mTextMessage!!.setText(R.string.title_home)
+        presenter.onTabSelected()
         return@OnNavigationItemSelectedListener true
       }
       R.id.navigation_dashboard -> {
-        mTextMessage!!.setText(R.string.title_dashboard)
-
+        presenter.onTabSelected()
         return@OnNavigationItemSelectedListener true
       }
       R.id.navigation_notifications -> {
-        mTextMessage!!.setText(R.string.title_notifications)
-
+        presenter.onTabSelected()
         return@OnNavigationItemSelectedListener true
       }
     }
@@ -30,9 +40,13 @@ class MainActivity : BaseMvpActivity<Unit>() {
     false
   }
 
+  override fun setContent(content: String) {
+    super.setContent(content)
+    textMessage.text = content
+  }
+
   override fun initView() {
-    mTextMessage = findViewById(R.id.message) as TextView
-    val navigation = findViewById(R.id.navigation) as BottomNavigationView
-    navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    val navigation = findView<BottomNavigationView>(R.id.navigation)
+    navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
   }
 }
