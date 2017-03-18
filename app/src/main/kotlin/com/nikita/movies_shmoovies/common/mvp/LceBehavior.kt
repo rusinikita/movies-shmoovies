@@ -25,10 +25,9 @@ class BaseLceBehavior(propertyBinder: PropertyBinder) : LceBehavior {
 
   override fun init(rootView: ViewGroup) {
     contentView = rootView.findView(R.id.content_view)
-    progressBar = rootView.context.layoutInflater.inflate(R.layout.view_progress, rootView, false)
+    progressBar = rootView.context.layoutInflater.inflate(R.layout.layout_progress, rootView, false)
+    errorView = rootView.context.layoutInflater.inflate(R.layout.layout_error, rootView, false) as ErrorView
     refreshView = rootView.findViewOptional(R.id.refresh_view)
-
-    errorView = ErrorView(rootView.context)
 
     rootView.addView(progressBar)
     rootView.addView(errorView)
@@ -54,6 +53,7 @@ class BaseLceBehavior(propertyBinder: PropertyBinder) : LceBehavior {
   }
 
   override fun switchToError(errorDesc: ErrorDesc) {
+    errorView.content = errorDesc
     LceAnimator.showErrorView(
       loadingView = progressBar,
       contentView = contentView,
