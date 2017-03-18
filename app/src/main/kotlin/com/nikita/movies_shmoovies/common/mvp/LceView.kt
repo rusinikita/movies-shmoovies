@@ -1,5 +1,6 @@
 package com.nikita.movies_shmoovies.common.mvp
 
+import android.content.Context
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy
@@ -29,13 +30,12 @@ data class ErrorDesc(
   @DrawableRes
   val imageRes: Int = -1,
   @StringRes
-  val titleRes: Int = -1,
-  val titleText: String? = null,
-  @StringRes
-  val descriptionRes: Int = -1,
-  val descriptionText: String? = null,
+  val errorTextRes: Int = -1,
+  val errorText: String? = null,
   @StringRes
   val buttonTextRes: Int = -1,
   val buttonAction: (() -> Unit)? = null,
-  val returnAction: (() -> Unit)? = null
-)
+  val returnAction: (() -> Unit)? = null) {
+
+  fun resolveErrorText(context: Context): String = if (errorTextRes > 0) context.getString(errorTextRes) else errorText!!
+}
