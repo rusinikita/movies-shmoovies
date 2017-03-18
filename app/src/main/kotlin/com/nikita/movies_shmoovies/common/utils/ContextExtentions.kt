@@ -1,4 +1,4 @@
-package com.nikita.movies_shmoovies.utils
+package com.nikita.movies_shmoovies.common.utils
 
 import android.content.Context
 

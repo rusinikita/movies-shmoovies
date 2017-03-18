@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
-import com.nikita.movies_shmoovies.utils.dpToPx
+import com.nikita.movies_shmoovies.common.utils.dpToPx
 
 /**
  * Little helper class for animating content, error and loading view
