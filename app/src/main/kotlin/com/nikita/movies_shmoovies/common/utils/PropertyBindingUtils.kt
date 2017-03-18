@@ -1,5 +1,6 @@
 package com.nikita.movies_shmoovies.common.utils
 
+import android.app.Activity
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.view.View
@@ -106,7 +107,7 @@ private fun propertyNotInitialized(): Nothing =
     "tried to use property after end of view lifecycle.")
 
 /**
- * Function to bind views in the controllers instead of **lateinit** directive
+ * Function to bind views in the fragments instead of **lateinit** directive
  * to avoid Context leaks (for example, after rotation).
  *
  * Binded views can be used in the [Fragment.onCreateView] if [PropertyBinder.viewContainer] was set,
@@ -131,6 +132,25 @@ fun <VIEW_TYPE : View> Fragment.bindViewOpt(propertyBinder: PropertyBinder,
                                          @IdRes id: Int): ReadOnlyProperty<Fragment, VIEW_TYPE?> {
   return ViewProperty(propertyBinder, { viewContainer ->
     (viewContainer ?: view)?.findViewById(id) as? VIEW_TYPE
+  })
+}
+
+/**
+ * Functions to bind views in activities. Just for consistency with fragments
+ */
+@Suppress("UNCHECKED_CAST")
+fun <VIEW_TYPE : View> Activity.bindView(propertyBinder: PropertyBinder,
+                                         @IdRes id: Int): ReadOnlyProperty<Activity, VIEW_TYPE> {
+  return ViewProperty(propertyBinder, {
+    findViewById(id) as? VIEW_TYPE ?: viewNotFound(id)
+  })
+}
+
+@Suppress("UNCHECKED_CAST")
+fun <VIEW_TYPE : View> Activity.bindViewOpt(propertyBinder: PropertyBinder,
+                                         @IdRes id: Int): ReadOnlyProperty<Activity, VIEW_TYPE?> {
+  return ViewProperty(propertyBinder, {
+    findViewById(id) as? VIEW_TYPE
   })
 }
 
