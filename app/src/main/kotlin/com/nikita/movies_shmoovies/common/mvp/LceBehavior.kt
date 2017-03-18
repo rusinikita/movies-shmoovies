@@ -1,39 +1,61 @@
 package com.nikita.movies_shmoovies.common.mvp
 
+import android.support.v4.widget.SwipeRefreshLayout
+import android.view.View
 import android.view.ViewGroup
+import com.nikita.movies_shmoovies.R
+import com.nikita.movies_shmoovies.common.utils.*
+import com.nikita.movies_shmoovies.common.widgets.ErrorView
 
 interface LceBehavior {
   fun init(rootView: ViewGroup)
   fun switchToContent()
   fun switchToLoading(pullToRefresh: Boolean)
   fun switchToError(errorDesc: ErrorDesc)
-  fun handleBack(): Boolean
 }
 
 /**
  * Adds progress and error view in rootView on initialization
- *
- * War
  */
-class BaseLceBehavior : LceBehavior {
+class BaseLceBehavior(propertyBinder: PropertyBinder) : LceBehavior {
+  private var contentView by bindProperty<View>(propertyBinder)
+  private var progressBar by bindProperty<View>(propertyBinder)
+  private var errorView by bindProperty<ErrorView>(propertyBinder)
+  private var refreshView by bindPropertyOpt<SwipeRefreshLayout>(propertyBinder)
 
   override fun init(rootView: ViewGroup) {
-    throw UnsupportedOperationException("not implemented")
+    contentView = rootView.findView(R.id.content_view)
+    progressBar = rootView.context.layoutInflater.inflate(R.layout.view_progress, rootView, false)
+    refreshView = rootView.findView(R.id.refresh_view)
+
+    errorView = ErrorView(rootView.context)
+
+    rootView.addView(progressBar)
+    rootView.addView(errorView)
   }
 
   override fun switchToContent() {
-    throw UnsupportedOperationException("not implemented")
+    LceAnimator.showContent(
+      loadingView = progressBar,
+      contentView = contentView,
+      errorView = errorView)
   }
 
   override fun switchToLoading(pullToRefresh: Boolean) {
-    throw UnsupportedOperationException("not implemented")
+    if (!pullToRefresh) {
+      LceAnimator.showLoading(
+        loadingView = progressBar,
+        contentView = contentView,
+        errorView = errorView)
+    }
+
+    // otherwise the pull to refresh widget will already display a loading animation
   }
 
   override fun switchToError(errorDesc: ErrorDesc) {
-    throw UnsupportedOperationException("not implemented")
-  }
-
-  override fun handleBack(): Boolean {
-    throw UnsupportedOperationException("not implemented")
+    LceAnimator.showErrorView(
+      loadingView = progressBar,
+      contentView = contentView,
+      errorView = errorView)
   }
 }
