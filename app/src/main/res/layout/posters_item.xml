@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/poster_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="142dp"
+        android:maxHeight="400dp"
+        tools:background="@color/colorAccent"
+        />
+
+    <TextView
+        android:id="@+id/poster_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:padding="8dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:background="@color/black_60"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien tortor, condimentum in justo id, iaculis egestas diam. In ornare enim sit amet velit sollicitudin blandit. Donec sagittis felis quis mauris convallis malesuada. Nullam bibendum bibendum diam, eget dignissim ante imperdiet eu. Suspendisse vel augue id nunc pellentesque vehicula. Donec ut sem eros. Mauris convallis eros vitae risus maximus scelerisque. Suspendisse et posuere augue, elementum molestie justo. Aenean lorem erat, laoreet et luctus at, dignissim vel quam."
+        />
+
+</FrameLayout>

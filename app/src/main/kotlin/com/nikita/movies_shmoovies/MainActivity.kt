@@ -1,49 +1,48 @@
 package com.nikita.movies_shmoovies
 
+import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
-import com.nikita.movies_shmoovies.common.mvp.LceView
+import android.support.v7.app.AppCompatActivity
 import com.nikita.movies_shmoovies.common.utils.findView
+import com.nikita.movies_shmoovies.posters.PostersFragment
 
-interface MainView: LceView<String>
-
-class MainActivity : BaseMvpActivity<String>(), MainView {
-  override val layout: Int = R.layout.activity_main
-
-  @InjectPresenter
-  lateinit var presenter: MainPresenter
-
-  @ProvidePresenter
-  fun providePresenter() = MainPresenter()
-
+class MainActivity : AppCompatActivity() {
   private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
     when (item.itemId) {
-      R.id.navigation_home -> {
-        presenter.onTabSelected()
-        return@OnNavigationItemSelectedListener true
+      R.id.navigation_movies -> {
+        showPostersFragment(PostersFragment.Type.Movies)
+        true
       }
-      R.id.navigation_dashboard -> {
-        presenter.onTabSelected()
-        return@OnNavigationItemSelectedListener true
+      R.id.navigation_tv_shows -> {
+        showPostersFragment(PostersFragment.Type.TvShows)
+        true
       }
-      R.id.navigation_notifications -> {
-        presenter.onTabSelected()
-        return@OnNavigationItemSelectedListener true
+      R.id.navigation_people -> {
+        showPostersFragment(PostersFragment.Type.People)
+        true
       }
+      else -> false
     }
-
-    false
   }
 
-  override fun setContent(content: String) {
-    super.setContent(content)
-  }
-
-  override fun initView() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+    setSupportActionBar(findView(R.id.toolbar))
+    setTitle(R.string.app_name)
     val navigation = findView<BottomNavigationView>(R.id.navigation)
+    // TODO Лень обходить баг с запоминанием выбранной вкладки
     navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+    if (savedInstanceState == null) {
+      showPostersFragment(PostersFragment.Type.Movies)
+    }
+  }
+
+  private fun showPostersFragment(type: PostersFragment.Type) {
+    supportFragmentManager
+      .beginTransaction()
+      .add(R.id.fragment_container, PostersFragment.create(type))
+      .commit()
   }
 }
