@@ -1,6 +1,7 @@
 ext {
     def supportLibVersion = '25.2.0'
     def moxyVersion = "1.4.6"
+    def retrofitVersion = "2.2.0"
 
     appCompileDependencies = [
             // kotlin
@@ -17,8 +18,9 @@ ext {
 
             // network
             'com.squareup.okhttp3:okhttp:3.6.0',
-            'com.squareup.retrofit2:retrofit:2.2.0',
+            "com.squareup.retrofit2:retrofit:$retrofitVersion",
             'com.squareup.moshi:moshi:1.4.0',
+            "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
 
             'com.squareup.picasso:picasso:2.5.3-SNAPSHOT'
     ]

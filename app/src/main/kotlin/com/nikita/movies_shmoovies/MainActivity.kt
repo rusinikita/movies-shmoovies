@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
   private fun showPostersFragment(type: PostersFragment.Type) {
     supportFragmentManager
       .beginTransaction()
-      .add(R.id.fragment_container, PostersFragment.create(type))
+      .replace(R.id.fragment_container, PostersFragment.create(type))
       .commit()
   }
 }

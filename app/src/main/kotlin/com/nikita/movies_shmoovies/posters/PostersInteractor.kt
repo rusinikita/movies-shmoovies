@@ -1,5 +1,7 @@
 package com.nikita.movies_shmoovies.posters
 
+import com.nikita.movies_shmoovies.common.network.MovieService
+
 interface PostersInteractor {
   fun getMovies(): PostersPM
   fun getTvShows(): PostersPM
@@ -12,9 +14,11 @@ data class PostersPM(val posters: List<Poster>) {
                     val image: String)
 }
 
-class BasePostersInteractor(): PostersInteractor {
+class BasePostersInteractor(val movieService: MovieService): PostersInteractor {
   override fun getMovies(): PostersPM {
-    return createFakePosters("Movies")
+    val posters = movieService.getUpcoming().results
+      .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
+    return PostersPM(posters)
   }
 
   override fun getTvShows(): PostersPM {

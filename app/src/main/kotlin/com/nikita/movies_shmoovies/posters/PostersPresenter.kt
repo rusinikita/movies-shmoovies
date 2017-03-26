@@ -3,8 +3,6 @@ package com.nikita.movies_shmoovies.posters
 import com.arellomobile.mvp.InjectViewState
 import com.nikita.movies_shmoovies.AppRouter
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpPresenter
-import kotlinx.coroutines.experimental.delay
-import java.util.concurrent.TimeUnit
 
 @InjectViewState
 class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<PostersView>() {
@@ -13,7 +11,6 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
 
   private fun loadContent(pullToRefresh: Boolean) {
     launchLce(viewState, pullToRefresh) {
-      delay(3, TimeUnit.SECONDS)
       behavior.loadContent()
     }
   }

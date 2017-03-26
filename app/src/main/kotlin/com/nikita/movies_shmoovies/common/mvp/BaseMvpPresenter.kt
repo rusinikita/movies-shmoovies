@@ -2,11 +2,8 @@ package com.nikita.movies_shmoovies.common.mvp
 
 import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
 
 abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View>() {
   private val job: Job = Job() // parent job for canceling all jobs on destroy
@@ -17,7 +14,7 @@ abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View>() {
    */
   protected fun launch(start: Boolean = true, block: suspend CoroutineScope.() -> Unit) = launch(context, start, block)
 
-  protected fun <T> async(start: Boolean = true, block: suspend CoroutineScope.() -> T) = async(context, start, block)
+  protected fun <T> async(start: Boolean = true, block: suspend CoroutineScope.() -> T) = async(CommonPool, start, block)
 
   protected fun <DATA> launchLce(view: LceView<DATA>, pullToRefresh: Boolean = false, dataProvider: suspend CoroutineScope.() -> DATA) = launch {
     view.switchToLoading(pullToRefresh)

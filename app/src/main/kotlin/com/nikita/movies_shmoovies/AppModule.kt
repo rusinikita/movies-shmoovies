@@ -7,5 +7,5 @@ import com.nikita.movies_shmoovies.posters.PostersInteractor
 class AppModule(val currentActivityProvider: CurrentActivityProvider, private val networkModule: NetworkModule) {
   val appRouter: AppRouter by lazy { BaseAppRouter(currentActivityProvider) }
 
-  val postersInteractor: PostersInteractor by lazy { BasePostersInteractor() }
+  val postersInteractor: PostersInteractor by lazy { BasePostersInteractor(networkModule.movieService) }
 }
