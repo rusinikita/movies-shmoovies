@@ -10,8 +10,7 @@
         android:id="@+id/poster_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="142dp"
-        android:maxHeight="400dp"
+        android:minHeight="320dp"
         tools:background="@color/colorAccent"
         />
 

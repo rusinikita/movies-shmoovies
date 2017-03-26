@@ -28,7 +28,7 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
   }
 }
 
-class MoviePostersBehavior(private val postersInteractor: BasePostersInteractor,
+class MoviePostersBehavior(private val postersInteractor: PostersInteractor,
                            private val router: AppRouter): PostersPresenter.Behavior() {
   override fun loadContent(): PostersPM = postersInteractor.getMovies()
 
@@ -37,7 +37,7 @@ class MoviePostersBehavior(private val postersInteractor: BasePostersInteractor,
   }
 }
 
-class TvPostersBehavior(private val postersInteractor: BasePostersInteractor,
+class TvPostersBehavior(private val postersInteractor: PostersInteractor,
                            private val router: AppRouter): PostersPresenter.Behavior() {
   override fun loadContent(): PostersPM = postersInteractor.getTvShows()
 
@@ -46,7 +46,7 @@ class TvPostersBehavior(private val postersInteractor: BasePostersInteractor,
   }
 }
 
-class PeoplePostersBehavior(private val postersInteractor: BasePostersInteractor,
+class PeoplePostersBehavior(private val postersInteractor: PostersInteractor,
                            private val router: AppRouter): PostersPresenter.Behavior() {
   override fun loadContent(): PostersPM = postersInteractor.getPeople()
 
