@@ -3,17 +3,24 @@ ext {
     def moxyVersion = "1.4.6"
 
     appCompileDependencies = [
-            // support libs
-            "com.android.support:appcompat-v7:$supportLibVersion",
-            "com.android.support:design:$supportLibVersion",
-
             // kotlin
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.13",
 
             // main libs
             "com.arello-mobile:moxy-android:$moxyVersion",
-            "com.arello-mobile:moxy-app-compat:$moxyVersion"
+            "com.arello-mobile:moxy-app-compat:$moxyVersion",
+
+            // support libs
+            "com.android.support:appcompat-v7:$supportLibVersion",
+            "com.android.support:design:$supportLibVersion",
+
+            // network
+            'com.squareup.okhttp3:okhttp:3.6.0',
+            'com.squareup.retrofit2:retrofit:2.2.0',
+            'com.squareup.moshi:moshi:1.4.0',
+
+            'com.squareup.picasso:picasso:2.5.3-SNAPSHOT'
     ]
 
     appAnnotationProcessingDependencies = [
