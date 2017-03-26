@@ -25,7 +25,7 @@ class BasePostersInteractor(): PostersInteractor {
     return createFakePosters("People")
   }
 
-  fun createFakePosters(type: String): PostersPM {
+  private fun createFakePosters(type: String): PostersPM {
     return PostersPM(List(40, { PostersPM.Poster(id = it.toString(), title = "$type$it", image = "/tUMdinO528RqibbkKIAIRoGKq0g.jpg") }))
   }
 }
