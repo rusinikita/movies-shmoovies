@@ -1,7 +1,6 @@
 package com.nikita.movies_shmoovies
 
 import android.support.design.widget.BottomNavigationView
-import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
@@ -19,7 +18,6 @@ class MainActivity : BaseMvpActivity<String>(), MainView {
   @ProvidePresenter
   fun providePresenter() = MainPresenter()
 
-  private val textMessage: TextView by bindView(R.id.message)
   private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
     when (item.itemId) {
@@ -42,7 +40,6 @@ class MainActivity : BaseMvpActivity<String>(), MainView {
 
   override fun setContent(content: String) {
     super.setContent(content)
-    textMessage.text = content
   }
 
   override fun initView() {
