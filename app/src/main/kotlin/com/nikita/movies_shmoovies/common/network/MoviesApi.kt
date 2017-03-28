@@ -11,12 +11,5 @@ interface MoviesApi {
 }
 
 class MovieService(api: MoviesApi): BaseService<MoviesApi>(api) {
-  fun getUpcoming(): MovieListResponse {
-    val response = api.getGetUpcoming(BuildConfig.API_KEY).execute()
-    if (response.isSuccessful) {
-      return response.body()
-    } else {
-      throw Exception(response.errorBody().string())
-    }
-  }
+  fun getUpcoming() = api.getGetUpcoming(BuildConfig.API_KEY + "1").executeUnsafe()
 }

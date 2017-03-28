@@ -25,6 +25,7 @@ class NetworkModule {
     Moshi.Builder().build()
   }
   private val retrofit: Retrofit by lazy {
+
     Retrofit.Builder()
       .addConverterFactory(MoshiConverterFactory.create(moshi))
       .client(okHttpClient)
