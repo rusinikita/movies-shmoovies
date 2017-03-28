@@ -1,6 +1,6 @@
 package com.nikita.movies_shmoovies.posters
 
-import com.nikita.movies_shmoovies.common.network.MovieService
+import com.nikita.movies_shmoovies.common.network.MoviesService
 
 interface PostersInteractor {
   fun getMovies(): PostersPM
@@ -14,9 +14,9 @@ data class PostersPM(val posters: List<Poster>) {
                     val image: String)
 }
 
-class BasePostersInteractor(val movieService: MovieService): PostersInteractor {
+class BasePostersInteractor(val moviesService: MoviesService): PostersInteractor {
   override fun getMovies(): PostersPM {
-    val posters = movieService.getUpcoming().results
+    val posters = moviesService.getUpcoming().results
       .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
     return PostersPM(posters)
   }

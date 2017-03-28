@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit
 
 
 class NetworkModule {
-  val movieService: MovieService by lazy {
-    MovieService(retrofit.create(MoviesApi::class.java))
+  val moviesService: MoviesService by lazy {
+    MoviesService(retrofit.create(MoviesApi::class.java))
   }
 
   private val okHttpClient: OkHttpClient by lazy {
