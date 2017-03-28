@@ -11,5 +11,5 @@ interface MoviesApi {
 }
 
 class MovieService(api: MoviesApi): BaseService<MoviesApi>(api) {
-  fun getUpcoming() = api.getGetUpcoming(BuildConfig.API_KEY + "1").executeUnsafe()
+  fun getUpcoming() = api.getGetUpcoming(BuildConfig.API_KEY).executeUnsafe()
 }

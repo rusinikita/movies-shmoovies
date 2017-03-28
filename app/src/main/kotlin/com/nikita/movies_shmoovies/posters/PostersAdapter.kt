@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.nikita.movies_shmoovies.R
 import com.nikita.movies_shmoovies.common.utils.findView
 import com.nikita.movies_shmoovies.common.utils.layoutInflater
@@ -17,7 +16,6 @@ class PostersAdapter : RecyclerView.Adapter<PostersAdapter.PosterHolder>() {
   override fun onBindViewHolder(holder: PosterHolder, position: Int) {
     val item = data[position]
     holder.image.load(item.image)
-    holder.title.text = item.title
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PosterHolder {
@@ -31,6 +29,5 @@ class PostersAdapter : RecyclerView.Adapter<PostersAdapter.PosterHolder>() {
 
   class PosterHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val image = itemView.findView<ImageView>(R.id.poster_image)
-    val title = itemView.findView<TextView>(R.id.poster_title)
   }
 }
