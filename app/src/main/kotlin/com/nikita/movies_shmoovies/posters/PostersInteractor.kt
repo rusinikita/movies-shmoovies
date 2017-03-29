@@ -3,9 +3,11 @@ package com.nikita.movies_shmoovies.posters
 import com.nikita.movies_shmoovies.common.network.MoviesService
 
 interface PostersInteractor {
-  fun getMovies(): PostersPM
+  fun getUpcomingMovies(): PostersPM
   fun getTvShows(): PostersPM
+  fun getTopMovies(): PostersPM
   fun getPeople(): PostersPM
+  fun getPopular(): PostersPM
 }
 
 data class PostersPM(val posters: List<Poster>) {
@@ -15,10 +17,23 @@ data class PostersPM(val posters: List<Poster>) {
 }
 
 class BasePostersInteractor(val moviesService: MoviesService): PostersInteractor {
-  override fun getMovies(): PostersPM {
+
+  override fun getPopular(): PostersPM {
+    val popularPosters = moviesService.getPopular().results
+            .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
+    return PostersPM(popularPosters)
+  }
+
+  override fun getUpcomingMovies(): PostersPM {
     val posters = moviesService.getUpcoming().results
       .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
     return PostersPM(posters)
+  }
+
+  override fun getTopMovies(): PostersPM {
+    val topPosters = moviesService.getTop().results
+            .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
+    return PostersPM(topPosters)
   }
 
   override fun getTvShows(): PostersPM {

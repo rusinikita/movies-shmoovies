@@ -25,9 +25,27 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
   }
 }
 
-class MoviePostersBehavior(private val postersInteractor: PostersInteractor,
-                           private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(): PostersPM = postersInteractor.getMovies()
+class PopularPostersBehavior(private val postersInteractor: PostersInteractor,
+                             private val router: AppRouter): PostersPresenter.Behavior() {
+  override fun loadContent(): PostersPM = postersInteractor.getPopular()
+
+  override fun onPosterClick(id: String) {
+    throw UnsupportedOperationException("not implemented")
+  }
+}
+
+class TopPostersBehavior(private val postersInteractor: PostersInteractor,
+                              private val router: AppRouter): PostersPresenter.Behavior() {
+  override fun loadContent(): PostersPM = postersInteractor.getTopMovies()
+
+  override fun onPosterClick(id: String) {
+    throw UnsupportedOperationException("not implemented")
+  }
+}
+
+class UpcomingPostersBehavior(private val postersInteractor: PostersInteractor,
+                              private val router: AppRouter): PostersPresenter.Behavior() {
+  override fun loadContent(): PostersPM = postersInteractor.getUpcomingMovies()
 
   override fun onPosterClick(id: String) {
     throw UnsupportedOperationException("not implemented")

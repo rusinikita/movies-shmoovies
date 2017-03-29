@@ -20,21 +20,25 @@ class MoviesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        /* TODO: Fix shadow form toolbar */
+        /* TODO: Elevation may not work */
         val tabLayout = view.findView<TabLayout>(R.id.tabLayout)
         val viewPager = view.findView<ViewPager>(R.id.viewpager)
         viewPager.adapter = MoviesPagerAdapter(activity.supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
     }
 
+
+    /* TODO: Refactor this later */
     class MoviesPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
         val TAB_COUNT = 3
 
         override fun getItem(position: Int): Fragment {
             when (position) {
-                0 -> return PostersFragment.create(PostersFragment.Type.Movies)
-                1 -> return PostersFragment.create(PostersFragment.Type.TvShows)
-                2 -> return PostersFragment.create(PostersFragment.Type.People)
-                else -> return PostersFragment.create(PostersFragment.Type.Movies)
+                0 -> return PostersFragment.create(PostersFragment.Type.Popular)
+                1 -> return PostersFragment.create(PostersFragment.Type.Upcoming)
+                2 -> return PostersFragment.create(PostersFragment.Type.Top)
+                else -> return PostersFragment.create(PostersFragment.Type.Upcoming)
             }
         }
 

@@ -30,7 +30,9 @@ class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
     val type = Type.valueOf(arguments.getString(EXTRA_TYPE))
     val appModule = activity.appModule
     val behavior = when (type) {
-      Type.Movies -> MoviePostersBehavior(appModule.postersInteractor, appModule.appRouter)
+      Type.Popular -> PopularPostersBehavior(appModule.postersInteractor, appModule.appRouter)
+      Type.Upcoming -> UpcomingPostersBehavior(appModule.postersInteractor, appModule.appRouter)
+      Type.Top -> TopPostersBehavior(appModule.postersInteractor, appModule.appRouter)
       Type.TvShows -> TvPostersBehavior(appModule.postersInteractor, appModule.appRouter)
       Type.People -> PeoplePostersBehavior(appModule.postersInteractor, appModule.appRouter)
     }
@@ -52,6 +54,6 @@ class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
   }
 
   enum class Type {
-    Movies, TvShows, People
+    Upcoming, TvShows, People, Popular, Top
   }
 }
