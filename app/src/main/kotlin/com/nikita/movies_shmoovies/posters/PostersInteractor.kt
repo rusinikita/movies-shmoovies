@@ -31,7 +31,7 @@ class BasePostersInteractor(val moviesService: MoviesService): PostersInteractor
   }
 
   override fun getTopMovies(): PostersPM {
-    val topPosters = moviesService.getTop().results
+    val topPosters = moviesService.getTop().results.subList(0,10)
             .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
     return PostersPM(topPosters)
   }

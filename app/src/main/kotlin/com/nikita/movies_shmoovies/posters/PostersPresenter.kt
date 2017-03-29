@@ -1,5 +1,6 @@
 package com.nikita.movies_shmoovies.posters
 
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.nikita.movies_shmoovies.AppRouter
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpPresenter
@@ -30,7 +31,7 @@ class PopularPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(): PostersPM = postersInteractor.getPopular()
 
   override fun onPosterClick(id: String) {
-    throw UnsupportedOperationException("not implemented")
+    Log.e("POPULAR", "$id clicked")
   }
 }
 
@@ -39,7 +40,7 @@ class TopPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(): PostersPM = postersInteractor.getTopMovies()
 
   override fun onPosterClick(id: String) {
-    throw UnsupportedOperationException("not implemented")
+    Log.e("TOP", "$id clicked")
   }
 }
 
@@ -48,7 +49,7 @@ class UpcomingPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(): PostersPM = postersInteractor.getUpcomingMovies()
 
   override fun onPosterClick(id: String) {
-    throw UnsupportedOperationException("not implemented")
+    Log.e("UPCOMING", "$id clicked")
   }
 }
 
