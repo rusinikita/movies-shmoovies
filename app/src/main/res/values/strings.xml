@@ -9,6 +9,7 @@
     <string name="movie_overview">Overview</string>
     <string name="movie_crew">Featured Crew</string>
     <string name="movie_cast">Top Billed Cast</string>
+    <string name="more_button">more</string>
 
     <string name="movie_data">Movie Data</string>
     <string name="movie_status">Status: </string>

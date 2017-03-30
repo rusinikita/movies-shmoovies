@@ -12,8 +12,8 @@ import com.nikita.movies_shmoovies.common.utils.layoutInflater
 
 class ErrorView : LinearLayout {
   private val iconView: ImageView?
-  private val errorTextView: TextView
-  private val actionButton: TextView
+  private val errorTextView: `@+id/actor_name`
+  private val actionButton: `@+id/actor_name`
 
   var content: ErrorDesc? = null
     set(value) {
