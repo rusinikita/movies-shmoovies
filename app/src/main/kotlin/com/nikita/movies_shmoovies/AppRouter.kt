@@ -1,5 +1,8 @@
 package com.nikita.movies_shmoovies
 
+import android.content.Intent
+import com.nikita.movies_shmoovies.movies.MoviesInfoActivity
+
 interface AppRouter {
   fun openMovieDetailsScreen()
   fun openTvDetailsScreen()
@@ -8,7 +11,9 @@ interface AppRouter {
 
 class BaseAppRouter(private val currentActivityProvider: CurrentActivityProvider) : AppRouter {
   override fun openMovieDetailsScreen() {
-    throw UnsupportedOperationException("not implemented")
+    val context = currentActivityProvider.invoke().baseContext
+    context.startActivity(Intent(context, MoviesInfoActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
   }
 
   override fun openTvDetailsScreen() {

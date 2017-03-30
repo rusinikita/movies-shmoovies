@@ -7,7 +7,7 @@
     android:background="?attr/selectableItemBackground">
 
     <ImageView
-        android:id="@+id/poster_image"
+        android:id="@+id/movie_poster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="240dp"
