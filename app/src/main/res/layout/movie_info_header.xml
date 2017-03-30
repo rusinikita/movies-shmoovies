@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mis_header_bg"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:id="@+id/movie_background"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/test_background" />
+
+    <ImageView
+        android:id="@+id/movie_poster"
+        android:layout_width="@dimen/poster_width"
+        android:layout_height="@dimen/poster_height"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/test_poster" />
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_background"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/movie_poster"
+        android:text="Interstellar"
+        android:textColor="@color/mis_header_main_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/movie_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/movie_title"
+        android:layout_below="@+id/movie_title"
+        android:layout_marginTop="8dp"
+        android:text="2015"
+        android:textColor="@color/mis_header_text" />
+
+    <TextView
+        android:id="@+id/movie_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/movie_year"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/movie_year"
+        android:text="16+"
+        android:textColor="@color/mis_header_text" />
+
+</RelativeLayout>

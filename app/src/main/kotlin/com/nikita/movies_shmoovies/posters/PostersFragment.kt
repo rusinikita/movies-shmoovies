@@ -1,23 +1,20 @@
 package com.nikita.movies_shmoovies.posters
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.view.ViewGroup
-import android.widget.`@+id/movie_background`
+import android.widget.ImageView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.R
-import com.nikita.movies_shmoovies.R.id.movie_poster
 import com.nikita.movies_shmoovies.appModule
 import com.nikita.movies_shmoovies.common.EXTRA_TYPE
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpFragment
 import com.nikita.movies_shmoovies.common.mvp.ErrorDesc
 import com.nikita.movies_shmoovies.common.utils.findView
-import com.nikita.movies_shmoovies.movies.MoviesInfoActivity
 
 class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
   companion object {
@@ -80,7 +77,7 @@ class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
 
   // RecyclerView VH and ADAPTER
   class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val image = itemView.findView<`@+id/movie_background`>(R.id.movie_poster)
+    val image = itemView.findView<ImageView>(R.id.movie_poster)
   }
   inner class  MoviesAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
