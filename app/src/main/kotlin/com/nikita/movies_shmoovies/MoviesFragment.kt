@@ -1,4 +1,4 @@
-package com.nikita.movies_shmoovies.movies
+package com.nikita.movies_shmoovies
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout

@@ -1,6 +1,9 @@
 package com.nikita.movies_shmoovies.common.utils
 
+import android.support.annotation.LayoutRes
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import com.nikita.movies_shmoovies.common.MOVIE_DB_IMAGE_BASE_URL
 import com.squareup.picasso.Picasso
@@ -29,3 +32,7 @@ fun ImageView.load(image: String) = Picasso
   .fit()
   .centerCrop()
   .into(this)
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+  return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+}

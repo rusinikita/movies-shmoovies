@@ -52,7 +52,7 @@ class PopularPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(): PostersPM = postersInteractor.getPopular()
 
   override fun onPosterClick(id: String) {
-    router.openMovieDetailsScreen()
+    router.openMovieDetailsScreen(id)
   }
 }
 
@@ -61,7 +61,7 @@ class TopPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(): PostersPM = postersInteractor.getTopMovies()
 
   override fun onPosterClick(id: String) {
-    router.openMovieDetailsScreen()
+    router.openMovieDetailsScreen(id)
   }
 }
 
@@ -70,7 +70,7 @@ class UpcomingPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(): PostersPM = postersInteractor.getUpcomingMovies()
 
   override fun onPosterClick(id: String) {
-    router.openMovieDetailsScreen()
+    router.openMovieDetailsScreen(id)
   }
 }
 

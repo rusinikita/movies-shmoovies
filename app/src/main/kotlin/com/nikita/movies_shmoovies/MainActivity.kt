@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.nikita.movies_shmoovies.common.utils.findView
-import com.nikita.movies_shmoovies.movies.MoviesFragment
+import com.nikita.movies_shmoovies.MoviesFragment
 import com.nikita.movies_shmoovies.posters.PostersFragment
 
 class MainActivity : AppCompatActivity() {

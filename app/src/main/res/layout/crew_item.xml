@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp">
     <TextView
         android:id="@+id/crew_name"
         android:layout_width="wrap_content"
@@ -19,5 +19,5 @@
         android:layout_height="wrap_content"
         android:text="Job"
         android:textColor="@color/mis_header_text"
-        android:textStyle="bold" />
+        android:textStyle="normal" />
 </LinearLayout>
