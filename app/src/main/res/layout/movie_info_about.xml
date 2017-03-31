@@ -55,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/movie_status_title"
         android:layout_below="@+id/movie_status_title"
-        android:text="Released"
         android:textColor="@color/mis_about_main_text" />
 
     <TextView
@@ -75,7 +74,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/movie_budget_title"
         android:layout_below="@+id/movie_budget_title"
-        android:text="1600000"
         android:textColor="@color/mis_about_main_text" />
 
     <TextView
@@ -95,7 +93,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/movie_revenue_title"
         android:layout_below="@+id/movie_revenue_title"
-        android:text="16900000"
         android:textColor="@color/mis_about_main_text" />
 
     <TextView
@@ -115,7 +112,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/movie_runtime_title"
         android:layout_below="@+id/movie_runtime_title"
-        android:text="169"
         android:textColor="@color/mis_about_main_text" />
 
     <TextView
@@ -135,7 +131,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/movie_release_title"
         android:layout_below="@+id/movie_release_title"
-        android:text="14.01.2001"
         android:textColor="@color/mis_about_main_text" />
 
     <TextView
@@ -145,9 +140,41 @@
         android:layout_below="@+id/movie_release"
         android:layout_marginTop="8dp"
         android:padding="8dp"
-        android:text="http://example.com"
         android:textAlignment="center"
         android:textColor="@color/mis_link"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/movie_budget_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie_currency"
+        android:textColor="@color/mis_about_main_text"
+        android:layout_alignBaseline="@+id/movie_budget"
+        android:layout_alignBottom="@+id/movie_budget"
+        android:layout_toEndOf="@+id/movie_budget"
+        android:layout_marginStart="4dp"/>
+
+    <TextView
+        android:id="@+id/movie_runtime_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie_length"
+        android:textColor="@color/mis_about_main_text"
+        android:layout_alignBaseline="@+id/movie_runtime"
+        android:layout_alignBottom="@+id/movie_runtime"
+        android:layout_toEndOf="@+id/movie_runtime"
+        android:layout_marginStart="4dp"/>
+
+    <TextView
+        android:id="@+id/movie_revenue_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie_currency"
+        android:textColor="@color/mis_about_main_text"
+        android:layout_alignBaseline="@+id/movie_revenue"
+        android:layout_alignBottom="@+id/movie_revenue"
+        android:layout_toEndOf="@+id/movie_revenue"
+        android:layout_marginStart="4dp"/>
 
 </RelativeLayout>

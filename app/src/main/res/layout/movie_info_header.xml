@@ -14,7 +14,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/test_background" />
+        app:srcCompat="@drawable/mis_back_placeholder" />
 
     <ImageView
         android:id="@+id/movie_poster"
@@ -25,7 +25,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/test_poster" />
+        app:srcCompat="@drawable/mis_movie_poster_placeholder"/>
 
     <TextView
         android:id="@+id/movie_title"

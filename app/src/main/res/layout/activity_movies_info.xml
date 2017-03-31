@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/root_movie_info">
+    android:layout_height="wrap_content"
+    android:id="@+id/mis_root">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mis_scroll_view">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/content_view">
+                <include layout="@layout/movie_info_header"/>
+                <include layout="@layout/movie_info"/>
+                <include layout="@layout/movie_info_about"/>
 
-        <include layout="@layout/movie_info_header"/>
-        <include layout="@layout/movie_info"/>
-        <include layout="@layout/movie_info_about"/>
-
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

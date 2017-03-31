@@ -12,7 +12,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/test_poster"
+        android:src="@drawable/mis_actor_placeholder"
         app:civ_border_color="@color/mis_header_text"
         app:civ_border_width="2dp" />
 

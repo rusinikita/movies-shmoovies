@@ -27,7 +27,6 @@
         android:layout_alignStart="@+id/movie_overview_title"
         android:layout_below="@+id/movie_overview_title"
         android:layout_marginEnd="16dp"
-        android:text="Here is overview about the movie. Just a few sentences will be enough for me to understand what movie is about."
         android:textColor="@color/mis_header_text" />
 
     <TextView

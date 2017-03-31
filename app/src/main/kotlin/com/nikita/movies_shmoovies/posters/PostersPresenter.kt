@@ -95,7 +95,7 @@ class TvPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getTvShows()
 
   override fun onPosterClick(id: String) {
-    throw UnsupportedOperationException("not implemented")
+    router.openMovieDetailsScreen("315837")
   }
 
   override fun resetPages() = postersInteractor.resetPages()
@@ -106,7 +106,7 @@ class PeoplePostersBehavior(private val postersInteractor: PostersInteractor,
   override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getPeople()
 
   override fun onPosterClick(id: String) {
-    throw UnsupportedOperationException("not implemented")
+    router.openMovieDetailsScreen("315837")
   }
 
   override fun resetPages() = postersInteractor.resetPages()
