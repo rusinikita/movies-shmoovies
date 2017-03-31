@@ -26,6 +26,10 @@ interface MoviesApi {
   @GET("/3/movie/{id}")
   fun getMovieDetails(@Path("id") id: String,
                       @Query("api_key") apiKey: String): Call<MovieInformation.MovieDetails>
+
+  @GET("/3/movie/{id}/credits")
+  fun getMovieCredits(@Path("id") id: String,
+                      @Query("api_key") apiKey: String) : Call<MovieInformation.CrewAndCast>
 }
 
 class MoviesService(api: MoviesApi): BaseService<MoviesApi>(api) {
@@ -34,4 +38,5 @@ class MoviesService(api: MoviesApi): BaseService<MoviesApi>(api) {
   fun getPopular(page: Int = 4) = api.getPopular(BuildConfig.API_KEY, page).executeUnsafe()
   fun getTop() = api.getTop(BuildConfig.API_KEY).executeUnsafe()
   fun getMovieDetails(id: String) = api.getMovieDetails(id, BuildConfig.API_KEY).executeUnsafe()
+  fun getMovieCredits(id: String) = api.getMovieCredits(id, BuildConfig.API_KEY).executeUnsafe()
 }

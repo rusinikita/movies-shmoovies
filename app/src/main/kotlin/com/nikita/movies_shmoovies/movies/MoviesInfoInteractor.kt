@@ -27,7 +27,7 @@ data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: Cre
                            val crew: List<Crew>){
         data class Cast(val character: String,
                         val name: String,
-                        val profilePath: String)
+                        val profile_path: String)
 
         data class Crew(val name: String,
                         val job: String)
@@ -37,13 +37,15 @@ data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: Cre
 
 class MoviesInfoInteractor(val moviesService: MoviesService) : MovieInfoInteractor {
     override fun getMovieInformation(id: String): MovieInformation {
-        return MovieInformation(getMovieDetails(id), createFakeCrew())
+        return MovieInformation(getMovieDetails(id), getMovieCredits(id))
     }
 
-    //    TODO: https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md#android
     fun getMovieDetails(id: String): MovieInformation.MovieDetails {
-        val data: MovieInformation.MovieDetails = moviesService.getMovieDetails(id)
-        return data
+        return moviesService.getMovieDetails(id)
+    }
+
+    fun getMovieCredits(id: String): MovieInformation.CrewAndCast {
+        return moviesService.getMovieCredits(id)
     }
 
     fun createFakeCrew(): MovieInformation.CrewAndCast {

@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.nikita.movies_shmoovies.R
 import com.nikita.movies_shmoovies.common.utils.findView
 import com.nikita.movies_shmoovies.common.utils.inflate
+import com.nikita.movies_shmoovies.common.utils.load
 import com.nikita.movies_shmoovies.movies.MovieInformation
 
 class CastAdapter(val data: List<MovieInformation.CrewAndCast.Cast>) : RecyclerView.Adapter<CastHolder>() {
@@ -17,6 +18,11 @@ class CastAdapter(val data: List<MovieInformation.CrewAndCast.Cast>) : RecyclerV
     override fun onBindViewHolder(holder: CastHolder, position: Int) {
         holder.name.text = data[position].name
         holder.character.text = data[position].character
+        try {
+            holder.image.load(data[position].profile_path)
+        } catch (e: Exception) {
+            //todo: placeholder here
+        }
     }
     override fun getItemCount() = data.size
 }
