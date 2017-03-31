@@ -34,8 +34,8 @@ interface MoviesApi {
 
 class MoviesService(api: MoviesApi): BaseService<MoviesApi>(api) {
   /*TODO: Bug with upcoming*/
-  fun getUpcoming(page: Int = 7) = api.getUpcoming(BuildConfig.API_KEY, page).executeUnsafe()
-  fun getPopular(page: Int = 4) = api.getPopular(BuildConfig.API_KEY, page).executeUnsafe()
+  fun getUpcoming(page: Int = 1) = api.getUpcoming(BuildConfig.API_KEY, page).executeUnsafe()
+  fun getPopular(page: Int = 1) = api.getPopular(BuildConfig.API_KEY, page).executeUnsafe()
   fun getTop() = api.getTop(BuildConfig.API_KEY).executeUnsafe()
   fun getMovieDetails(id: String) = api.getMovieDetails(id, BuildConfig.API_KEY).executeUnsafe()
   fun getMovieCredits(id: String) = api.getMovieCredits(id, BuildConfig.API_KEY).executeUnsafe()

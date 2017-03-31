@@ -11,14 +11,14 @@ import com.nikita.movies_shmoovies.common.utils.load
 @InjectViewState
 class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<PostersView>() {
 
-  var data: List<PostersPM.Poster> = emptyList()
+  var data: MutableList<PostersPM.Poster> = mutableListOf()
   var itemClickAction: ((PostersPM.Poster) -> Unit)? = null
 
-  override fun onFirstViewAttach() = loadContent(pullToRefresh = false)
+  override fun onFirstViewAttach() = loadContent(pullToRefresh = true)
 
-  private fun loadContent(pullToRefresh: Boolean) {
-    launchLce(viewState, pullToRefresh) {
-      behavior.loadContent()
+  private fun loadContent(pullToRefresh: Boolean, pagination: Boolean = false) {
+    launchLce(viewState, pullToRefresh, pagination) {
+      behavior.loadContent(pagination)
     }
   }
 
@@ -26,15 +26,24 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
 
   fun onPosterClick(id: String) = behavior.onPosterClick(id)
 
+  fun resetPages(){
+    behavior.resetPages()
+  }
+
   abstract class Behavior {
-    abstract fun loadContent(): PostersPM
+    abstract fun loadContent(pagination: Boolean): PostersPM
     abstract fun onPosterClick(id: String)
+    abstract fun resetPages()
   }
 
   // Functions for RecyclerAdapter
   fun onBindViewHolder(holder: PostersFragment.MoviesViewHolder, position: Int){
     val item = data[position]
     holder.image.load(item.image)
+
+    if (position == data.size-1){
+      loadContent(false, false)
+    }
   }
   fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostersFragment.MoviesViewHolder {
     val view = parent.context.layoutInflater.inflate(R.layout.posters_item, parent, false)
@@ -49,45 +58,56 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
 
 class PopularPostersBehavior(private val postersInteractor: PostersInteractor,
                              private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(): PostersPM = postersInteractor.getPopular()
+  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getPopular()
+
 
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen(id)
   }
+
+  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class TopPostersBehavior(private val postersInteractor: PostersInteractor,
                               private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(): PostersPM = postersInteractor.getTopMovies()
+  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getTopMovies()
 
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen(id)
   }
+
+  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class UpcomingPostersBehavior(private val postersInteractor: PostersInteractor,
                               private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(): PostersPM = postersInteractor.getUpcomingMovies()
+  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getUpcomingMovies()
 
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen(id)
   }
+
+  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class TvPostersBehavior(private val postersInteractor: PostersInteractor,
                            private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(): PostersPM = postersInteractor.getTvShows()
+  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getTvShows()
 
   override fun onPosterClick(id: String) {
     throw UnsupportedOperationException("not implemented")
   }
+
+  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class PeoplePostersBehavior(private val postersInteractor: PostersInteractor,
                            private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(): PostersPM = postersInteractor.getPeople()
+  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getPeople()
 
   override fun onPosterClick(id: String) {
     throw UnsupportedOperationException("not implemented")
   }
+
+  override fun resetPages() = postersInteractor.resetPages()
 }

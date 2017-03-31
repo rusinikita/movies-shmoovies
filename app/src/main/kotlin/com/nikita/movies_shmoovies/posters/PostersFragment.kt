@@ -57,7 +57,7 @@ class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
 
   override fun setContent(content: PostersPM) {
     super.setContent(content)
-    presenter.data = content.posters
+    presenter.data.addAll(content.posters.toMutableList())
     swipeLayout.isRefreshing = false
   }
 

@@ -8,6 +8,8 @@ interface PostersInteractor {
   fun getTopMovies(): PostersPM
   fun getPeople(): PostersPM
   fun getPopular(): PostersPM
+
+  fun resetPages()
 }
 
 data class PostersPM(val posters: List<Poster>) {
@@ -17,16 +19,25 @@ data class PostersPM(val posters: List<Poster>) {
 }
 
 class BasePostersInteractor(val moviesService: MoviesService): PostersInteractor {
+  var popularPageCounter: Int = 1
+  var upcomingPageCounter: Int = 1
+
+  override fun resetPages() {
+    popularPageCounter = 1
+    upcomingPageCounter = 1
+  }
 
   override fun getPopular(): PostersPM {
-    val popularPosters = moviesService.getPopular().results
+    val popularPosters = moviesService.getPopular(popularPageCounter).results
             .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
+    popularPageCounter++
     return PostersPM(popularPosters)
   }
 
   override fun getUpcomingMovies(): PostersPM {
-    val posters = moviesService.getUpcoming().results
+    val posters = moviesService.getUpcoming(upcomingPageCounter).results
       .map { PostersPM.Poster(it.id, it.title, it.poster_path) }
+    upcomingPageCounter++
     return PostersPM(posters)
   }
 
