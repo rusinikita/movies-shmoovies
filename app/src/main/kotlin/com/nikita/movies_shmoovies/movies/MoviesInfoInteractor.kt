@@ -1,18 +1,22 @@
 package com.nikita.movies_shmoovies.movies
 
+import com.nikita.movies_shmoovies.common.network.MoviesService
+import kotlinx.coroutines.experimental.async
+
 interface MovieInfoInteractor {
-    fun getMovieInformation(): MovieInformation
+    fun getMovieInformation(id: String): MovieInformation
 }
 
 data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: CrewAndCast){
-    data class MovieDetails(val originalTitle: String,
-                            val backDropPath: String,
-                            val posterPath: String,
+
+    data class MovieDetails(val original_title: String,
+                            val backdrop_path: String,
+                            val poster_path: String,
                             val overview: String,
                             val budget: Int,
                             val revenue: Int,
                             val runtime: Int,
-                            val releaseDate: String,
+                            val release_date: String,
                             val status: String,
                             val homepage: String,
                             val genres: List<Genre>) {
@@ -31,24 +35,15 @@ data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: Cre
 
 }
 
-class MoviesInfoInteractor : MovieInfoInteractor {
-    override fun getMovieInformation(): MovieInformation {
-        return MovieInformation(createFakeDetails(), createFakeCrew())
+class MoviesInfoInteractor(val moviesService: MoviesService) : MovieInfoInteractor {
+    override fun getMovieInformation(id: String): MovieInformation {
+        return MovieInformation(getMovieDetails(id), createFakeCrew())
     }
 
-    fun createFakeDetails(): MovieInformation.MovieDetails {
-        return MovieInformation.MovieDetails(
-                "Interstellar",
-                "123qwe",
-                "123qwe",
-                "Nice movie! -Bob",
-                900000000,
-                999999999,
-                169,
-                "14.01.14",
-                "Released",
-                "http://interstellar.com",
-                List(3, { MovieInformation.MovieDetails.Genre("Dramma") }))
+    //    TODO: https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/coroutines-guide-ui.md#android
+    fun getMovieDetails(id: String): MovieInformation.MovieDetails {
+        val data: MovieInformation.MovieDetails = moviesService.getMovieDetails(id)
+        return data
     }
 
     fun createFakeCrew(): MovieInformation.CrewAndCast {

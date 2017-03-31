@@ -6,7 +6,7 @@ ext {
     appCompileDependencies = [
             // kotlin
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.13",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.14",
 
             // main libs
             "com.arello-mobile:moxy-android:$moxyVersion",

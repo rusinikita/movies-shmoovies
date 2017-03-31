@@ -1,17 +1,19 @@
 package com.nikita.movies_shmoovies.movies
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.nikita.movies_shmoovies.common.mvp.BaseMvpPresenter
 
 @InjectViewState
-class MovieInfoPresenter(val interactor: MovieInfoInteractor) : MvpPresenter<MoviesInfoView>() {
+class MovieInfoPresenter(val interactor: MovieInfoInteractor, val id: String) : BaseMvpPresenter<MoviesInfoView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        setupViews()
+        loadContent()
     }
 
-    fun setupViews(){
-        viewState.setViews(interactor.getMovieInformation())
+    fun loadContent() {
+        launchLce(viewState, true){
+            interactor.getMovieInformation(id)
+        }
     }
 }

@@ -63,7 +63,7 @@ class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
 
   /* TODO: Investigate where is the progress bar end error message? */
   override fun switchToLoading(pullToRefresh: Boolean) {
-    super.switchToLoading(pullToRefresh)
+    super.switchToLoading(false)
   }
 
   override fun switchToError(errorDesc: ErrorDesc) {

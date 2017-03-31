@@ -1,7 +1,5 @@
 package com.nikita.movies_shmoovies.movies
 
-import com.arellomobile.mvp.MvpView
+import com.nikita.movies_shmoovies.common.mvp.LceView
 
-interface MoviesInfoView : MvpView {
-    fun setViews(movieInformation: MovieInformation)
-}
+interface MoviesInfoView : LceView<MovieInformation>
