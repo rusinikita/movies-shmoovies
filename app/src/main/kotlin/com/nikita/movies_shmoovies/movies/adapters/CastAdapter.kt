@@ -1,6 +1,7 @@
 package com.nikita.movies_shmoovies.movies.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -21,8 +22,8 @@ class CastAdapter(val data: List<MovieInformation.CrewAndCast.Cast>) : RecyclerV
         holder.character.text = data[position].character
         try {
             holder.image.loadWithPlaceholder(data[position].profile_path, R.drawable.mis_actor_placeholder)
-        } catch (e: Exception) {
-            //todo: placeholder here
+        } catch (e: Exception){
+            Log.e("CastAdapter", e.message)
         }
     }
     override fun getItemCount() = data.size

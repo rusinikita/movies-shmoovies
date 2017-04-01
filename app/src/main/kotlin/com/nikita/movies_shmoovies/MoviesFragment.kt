@@ -28,8 +28,6 @@ class MoviesFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPager)
     }
 
-
-    /* TODO: Refactor this later */
     class MoviesPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
         val TAB_COUNT = 3
 

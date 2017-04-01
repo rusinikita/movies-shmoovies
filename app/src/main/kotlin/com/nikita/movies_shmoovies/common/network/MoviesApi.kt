@@ -33,7 +33,6 @@ interface MoviesApi {
 }
 
 class MoviesService(api: MoviesApi): BaseService<MoviesApi>(api) {
-  /*TODO: Bug with upcoming*/
   fun getUpcoming(page: Int = 1) = api.getUpcoming(BuildConfig.API_KEY, page).executeUnsafe()
   fun getPopular(page: Int = 1) = api.getPopular(BuildConfig.API_KEY, page).executeUnsafe()
   fun getTop() = api.getTop(BuildConfig.API_KEY).executeUnsafe()

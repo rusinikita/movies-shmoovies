@@ -19,7 +19,8 @@ data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: Cre
                             val release_date: String,
                             val status: String,
                             val homepage: String,
-                            val genres: List<Genre>) {
+                            val genres: List<Genre>,
+                            val vote_average: Float) {
         data class Genre(val name: String)
     }
 

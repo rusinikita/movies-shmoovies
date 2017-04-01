@@ -1,6 +1,7 @@
 package com.nikita.movies_shmoovies.movies
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -10,7 +11,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.R
 import com.nikita.movies_shmoovies.appModule
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
+import com.nikita.movies_shmoovies.common.utils.findView
 import com.nikita.movies_shmoovies.common.utils.loadWithPlaceholder
+import com.nikita.movies_shmoovies.common.widgets.CircleDisplay
 import com.nikita.movies_shmoovies.movies.adapters.CastAdapter
 import com.nikita.movies_shmoovies.movies.adapters.CrewAdapter
 import com.nikita.movies_shmoovies.movies.adapters.GenresAdapter
@@ -64,11 +67,23 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         movie_cast_recycler.adapter = CastAdapter(content.crewAndCast.cast)
         movie_genres_recycler.adapter = GenresAdapter(content.movieDetails.genres)
 
-        // todo: try-catch with custom error
         if(!content.movieDetails.homepage.isEmpty()){
             movie_url.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(content.movieDetails.homepage)))
             }
         }
+
+        val userScore = findViewById(R.id.user_score) as CircleDisplay
+        userScore.visibility = View.VISIBLE
+        userScore.setAnimDuration(500)
+        userScore.setValueWidthPercent(30f)
+        userScore.setTextSize(14f)
+        userScore.setColor(resources.getColor(R.color.TMDB_green))
+        userScore.setDrawText(true)
+        userScore.setDrawInnerCircle(true)
+        userScore.setFormatDigits(0)
+        userScore.setUnit("")
+        userScore.setStepSize(0.5f)
+        userScore.showValue(content.movieDetails.vote_average*10, 100f, true)
     }
 }

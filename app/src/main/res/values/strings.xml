@@ -20,5 +20,6 @@
     <string name="movie_revenue">Revenue: </string>
     <string name="movie_currency">$</string>
     <string name="movie_length">min</string>
+    <string name="user_score">User Score</string>
 
 </resources>

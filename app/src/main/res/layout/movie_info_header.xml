@@ -57,4 +57,25 @@
         android:layout_toEndOf="@+id/movie_year"
         android:textColor="@color/mis_header_text" />
 
+    <com.nikita.movies_shmoovies.common.widgets.CircleDisplay
+        android:id="@+id/user_score"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/movie_poster"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/user_score_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/user_score"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/user_score"
+        android:text="@string/user_score"
+        android:textColor="@color/mis_header_main_text"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
