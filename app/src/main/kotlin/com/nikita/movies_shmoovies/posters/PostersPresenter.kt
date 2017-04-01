@@ -26,23 +26,21 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
 
   fun onPosterClick(id: String) = behavior.onPosterClick(id)
 
-  fun resetPages(){
-    behavior.resetPages()
-  }
-
   abstract class Behavior {
     abstract fun loadContent(pagination: Boolean): PostersPM
     abstract fun onPosterClick(id: String)
-    abstract fun resetPages()
   }
 
   // Functions for RecyclerAdapter
   fun onBindViewHolder(holder: PostersFragment.MoviesViewHolder, position: Int){
     val item = data[position]
-    holder.image.load(item.image)
 
-    if (position == data.size-1){
-      loadContent(false, false)
+    if (item.image != null) {
+      holder.image.load(item.image)
+    }
+
+    if (position == data.size-1 && behavior !is TopPostersBehavior){
+      loadContent(false, true)
     }
   }
   fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostersFragment.MoviesViewHolder {
@@ -55,39 +53,40 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
 }
 
 // Behavior classes
-
 class PopularPostersBehavior(private val postersInteractor: PostersInteractor,
                              private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getPopular()
-
+  override fun loadContent(pagination: Boolean): PostersPM {
+    if (!pagination) {postersInteractor.resetPopularPages()}
+    return postersInteractor.getPopular(pagination)
+  }
 
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen(id)
   }
-
-  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class TopPostersBehavior(private val postersInteractor: PostersInteractor,
                               private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getTopMovies()
+  override fun loadContent(pagination: Boolean): PostersPM {
+    if (!pagination) {postersInteractor.resetPages()}
+    return postersInteractor.getTopMovies()
+  }
 
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen(id)
   }
-
-  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class UpcomingPostersBehavior(private val postersInteractor: PostersInteractor,
                               private val router: AppRouter): PostersPresenter.Behavior() {
-  override fun loadContent(pagination: Boolean): PostersPM = postersInteractor.getUpcomingMovies()
+  override fun loadContent(pagination: Boolean): PostersPM {
+    if (!pagination ) {postersInteractor.resetUpcomingPages()}
+    return postersInteractor.getUpcomingMovies(pagination)
+  }
 
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen(id)
   }
-
-  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class TvPostersBehavior(private val postersInteractor: PostersInteractor,
@@ -97,8 +96,6 @@ class TvPostersBehavior(private val postersInteractor: PostersInteractor,
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen("315837")
   }
-
-  override fun resetPages() = postersInteractor.resetPages()
 }
 
 class PeoplePostersBehavior(private val postersInteractor: PostersInteractor,
@@ -108,6 +105,4 @@ class PeoplePostersBehavior(private val postersInteractor: PostersInteractor,
   override fun onPosterClick(id: String) {
     router.openMovieDetailsScreen("315837")
   }
-
-  override fun resetPages() = postersInteractor.resetPages()
 }

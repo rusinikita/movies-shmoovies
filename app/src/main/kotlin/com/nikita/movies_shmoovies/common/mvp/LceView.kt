@@ -17,7 +17,7 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(SingleStateStrategy::class)
 interface LceView<in D> : MvpView {
-  fun setContent(content: D)
+  fun setContent(content: D, pagination: Boolean = false)
   fun switchToLoading(pullToRefresh: Boolean)
   fun switchToError(errorDesc: ErrorDesc)
 }

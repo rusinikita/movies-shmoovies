@@ -55,13 +55,16 @@ class PostersFragment : BaseMvpFragment<PostersPM>(), PostersView {
     swipeLayout.setOnRefreshListener { presenter.onRefreshTriggered() }
   }
 
-  override fun setContent(content: PostersPM) {
-    super.setContent(content)
-    presenter.data.addAll(content.posters.toMutableList())
+  override fun setContent(content: PostersPM, pagination: Boolean) {
+    super.setContent(content, pagination)
     swipeLayout.isRefreshing = false
+    if (pagination) {
+      presenter.data.addAll(content.posters.toMutableList())
+    } else {
+      presenter.data = content.posters.toMutableList()
+    }
   }
 
-  /* TODO: Investigate where is the progress bar end error message? */
   override fun switchToLoading(pullToRefresh: Boolean) {
     super.switchToLoading(false)
   }

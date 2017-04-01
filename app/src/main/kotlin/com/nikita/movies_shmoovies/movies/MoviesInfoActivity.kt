@@ -5,13 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.R
 import com.nikita.movies_shmoovies.appModule
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
-import com.nikita.movies_shmoovies.common.utils.load
 import com.nikita.movies_shmoovies.common.utils.loadWithPlaceholder
 import com.nikita.movies_shmoovies.movies.adapters.CastAdapter
 import com.nikita.movies_shmoovies.movies.adapters.CrewAdapter
@@ -47,8 +45,8 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         movie_genres_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    override fun setContent(content: MovieInformation) {
-        super.setContent(content)
+    override fun setContent(content: MovieInformation, pagination: Boolean) {
+        super.setContent(content, pagination)
         content_view.visibility = View.VISIBLE
 
         movie_poster.loadWithPlaceholder(content.movieDetails.poster_path, R.drawable.mis_poster_placeholder)

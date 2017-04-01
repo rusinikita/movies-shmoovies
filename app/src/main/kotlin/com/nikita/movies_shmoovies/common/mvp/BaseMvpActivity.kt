@@ -26,7 +26,7 @@ abstract class BaseMvpActivity<in D> : MvpAppCompatActivity(), LceView<D> {
 
   open fun initView() {}
 
-  override fun setContent(content: D) {
+  override fun setContent(content: D, pagination: Boolean) {
     elceBehavior.switchToContent()
   }
 
