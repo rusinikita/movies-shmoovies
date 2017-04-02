@@ -27,7 +27,7 @@ abstract class BaseMvpFragment<in D> : MvpAppCompatFragment(), LceView<D> {
     return view
   }
 
-  override fun setContent(content: D) {
+  override fun setContent(content: D, pagination: Boolean) {
     elceBehavior.switchToContent()
   }
 

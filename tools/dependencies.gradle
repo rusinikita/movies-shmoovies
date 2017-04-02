@@ -6,7 +6,7 @@ ext {
     appCompileDependencies = [
             // kotlin
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.13",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.14",
 
             // main libs
             "com.arello-mobile:moxy-android:$moxyVersion",
@@ -21,8 +21,11 @@ ext {
             "com.squareup.retrofit2:retrofit:$retrofitVersion",
             'com.squareup.moshi:moshi:1.4.0',
             "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+            'com.squareup.picasso:picasso:2.5.3-SNAPSHOT',
 
-            'com.squareup.picasso:picasso:2.5.3-SNAPSHOT'
+            // design libs
+            'com.android.support.constraint:constraint-layout:1.0.2',
+            'de.hdodenhof:circleimageview:2.1.0'
     ]
 
     appAnnotationProcessingDependencies = [

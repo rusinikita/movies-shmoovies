@@ -2,9 +2,7 @@ package com.nikita.movies_shmoovies.common.widgets
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import com.nikita.movies_shmoovies.R
 import com.nikita.movies_shmoovies.common.mvp.ErrorDesc
 import com.nikita.movies_shmoovies.common.utils.findView

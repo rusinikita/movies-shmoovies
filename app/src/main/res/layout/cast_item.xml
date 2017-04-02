@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:maxWidth="104dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="8dp"
+    android:id="@+id/cast_root"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/actor_photo"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mis_actor_placeholder"
+        app:civ_border_color="@color/mis_header_text"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:id="@+id/actor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actor Name"
+        android:textColor="@color/mis_crew_text"
+        android:textStyle="bold"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/actor_character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Role Name"
+        android:textColor="@color/mis_header_text"
+        android:maxLines="1"/>
+
+</LinearLayout>

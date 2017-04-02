@@ -16,17 +16,16 @@ abstract class BaseMvpPresenter<View : MvpView> : MvpPresenter<View>() {
 
   protected fun <T> async(start: Boolean = true, block: suspend CoroutineScope.() -> T) = async(CommonPool, start, block)
 
-  protected fun <DATA> launchLce(view: LceView<DATA>, pullToRefresh: Boolean = false, dataProvider: suspend CoroutineScope.() -> DATA) = launch {
+  protected fun <DATA> launchLce(view: LceView<DATA>, pullToRefresh: Boolean = false, pagination: Boolean = false, dataProvider: suspend CoroutineScope.() -> DATA) = launch {
     view.switchToLoading(pullToRefresh)
     try {
       val data = async(block = dataProvider).await()
-      view.setContent(data)
+      view.setContent(data, pagination)
     } catch (e: Exception) {
       // TODO error handling
       view.switchToError(ErrorDesc(errorText = e.message))
     }
   }
-
   override fun onDestroy() {
     job.cancel()
   }

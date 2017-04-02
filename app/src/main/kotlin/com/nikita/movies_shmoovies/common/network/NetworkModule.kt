@@ -1,5 +1,7 @@
 package com.nikita.movies_shmoovies.common.network
 
+import com.nikita.movies_shmoovies.actors.ActorApi
+import com.nikita.movies_shmoovies.actors.ActorInfoService
 import com.nikita.movies_shmoovies.common.DEFAULT_CONNECT_TIMEOUT
 import com.nikita.movies_shmoovies.common.MOVIE_DB_API_BASE_URL
 import com.squareup.moshi.Moshi
@@ -12,6 +14,10 @@ import java.util.concurrent.TimeUnit
 class NetworkModule {
   val moviesService: MoviesService by lazy {
     MoviesService(retrofit.create(MoviesApi::class.java))
+  }
+
+  val actorInfoService: ActorInfoService by lazy {
+    ActorInfoService(retrofit.create(ActorApi::class.java))
   }
 
   private val okHttpClient: OkHttpClient by lazy {

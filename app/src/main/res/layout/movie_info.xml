@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/movie_info_bg"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/movie_overview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:text="@string/movie_overview"
+        android:textColor="@color/mis_header_main_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/movie_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/movie_overview_title"
+        android:layout_below="@+id/movie_overview_title"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/mis_header_text" />
+
+    <TextView
+        android:id="@+id/movie_crew_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/movie_overview"
+        android:layout_below="@+id/movie_overview"
+        android:layout_marginTop="16dp"
+        android:text="@string/movie_crew"
+        android:textColor="@color/mis_header_main_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movie_crew_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/movie_crew_title"
+        android:layout_below="@+id/movie_crew_title"
+        android:nestedScrollingEnabled="false"/>
+
+    <TextView
+        android:id="@+id/movie_cast_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/movie_crew_recycler"
+        android:layout_below="@+id/movie_crew_recycler"
+        android:layout_marginTop="16dp"
+        android:text="@string/movie_cast"
+        android:textColor="@color/mis_header_main_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movie_cast_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/movie_cast_title"
+        android:layout_below="@+id/movie_cast_title"
+        android:nestedScrollingEnabled="false"/>
+
+</RelativeLayout>
