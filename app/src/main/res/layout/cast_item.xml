@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
+    android:maxWidth="104dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginRight="16dp"
@@ -22,13 +23,15 @@
         android:layout_height="wrap_content"
         android:text="Actor Name"
         android:textColor="@color/mis_crew_text"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:maxLines="1"/>
 
     <TextView
         android:id="@+id/actor_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Role Name"
-        android:textColor="@color/mis_header_text" />
+        android:textColor="@color/mis_header_text"
+        android:maxLines="1"/>
 
 </LinearLayout>

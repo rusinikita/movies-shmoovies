@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="Name Lastname"
         android:textColor="@color/mis_crew_text"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:maxLines="1"/>
 
     <TextView
         android:id="@+id/crew_job"
@@ -19,5 +20,6 @@
         android:layout_height="wrap_content"
         android:text="Job"
         android:textColor="@color/mis_header_text"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:maxLines="1"/>
 </LinearLayout>
