@@ -4,13 +4,21 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.R
+import com.nikita.movies_shmoovies.actors.ActorInfoActivity
 import com.nikita.movies_shmoovies.appModule
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
+import com.nikita.movies_shmoovies.common.utils.findView
+import com.nikita.movies_shmoovies.common.utils.inflate
 import com.nikita.movies_shmoovies.common.utils.loadWithPlaceholder
 import com.nikita.movies_shmoovies.common.widgets.CircleDisplay
 import com.nikita.movies_shmoovies.movies.adapters.*
@@ -48,9 +56,6 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
     override fun setContent(content: MovieInformation, pagination: Boolean) {
         super.setContent(content, pagination)
         content_view.visibility = View.VISIBLE
-
-        val poster = findViewById(R.id.movie_poster) as ImageView
-        poster
 
         if (content.movieDetails.poster_path != null){
             movie_poster.loadWithPlaceholder(content.movieDetails.poster_path, R.drawable.mis_poster_placeholder)
@@ -108,4 +113,52 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         userScore.setStepSize(0.5f)
         userScore.showValue(content.movieDetails.vote_average*10, 100f, true)
     }
+
+    // Adapter class for Cast list
+      inner class CastAdapter(val data: List<RecyclerItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+        val ERROR_VIEW = 0
+        val CAST_VIEW = 1
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            when (viewType) {
+                CAST_VIEW -> return CastHolder(parent.inflate(R.layout.cast_item))
+                ERROR_VIEW -> return ErrorHolder(parent.inflate(R.layout.emty_error_item))
+                else -> return ErrorHolder(parent.inflate(R.layout.emty_error_item))
+            }
+
+        }
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            when (holder.itemViewType){
+                CAST_VIEW -> {
+                    (holder as CastHolder).name.text = (data[position] as MovieInformation.CrewAndCast.Cast).name
+                    holder.character.text = (data[position] as MovieInformation.CrewAndCast.Cast).character
+                    try {
+                        holder.image.loadWithPlaceholder((data[position] as MovieInformation.CrewAndCast.Cast).profile_path, R.drawable.mis_actor_placeholder)
+                    } catch (e: Exception){
+                        Log.e("CastAdapter", e.message)
+                    }
+                    holder.root.setOnClickListener { startActivity(
+                            Intent(this@MoviesInfoActivity, ActorInfoActivity::class.java)
+                                    .putExtra("actor_id", (data[position] as MovieInformation.CrewAndCast.Cast).id)) }
+                }
+                ERROR_VIEW -> (holder as ErrorHolder).errorTxt.text = (data[position] as ErrorContent).errorTxt
+            }
+
+        }
+        override fun getItemViewType(position: Int): Int {
+            if (data[position] is RegularItem) return CAST_VIEW
+            if (data[position] is ErrorItem) return ERROR_VIEW
+            else return ERROR_VIEW
+        }
+        override fun getItemCount() = data.size
+    }
+
+    class CastHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val image = view.findView<ImageView>(R.id.actor_photo)
+        val name = view.findView<TextView>(R.id.actor_name)
+        val character = view.findView<TextView>(R.id.actor_character)
+        val root = view.findView<LinearLayout>(R.id.cast_root)
+    }
+
 }

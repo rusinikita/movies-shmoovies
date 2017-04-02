@@ -26,6 +26,11 @@
     <color name="mis_about_text">#1b1b1b</color>
     <color name="mis_link">@color/TMDB_green</color>
 
+    <!--Actor info Screen-->
+    <color name="ais_title">#ffffff</color>
+    <color name="ais_text">#c7c7c7</color>
+    <color name="ais_links">@color/TMDB_green</color>
+
 
 
 

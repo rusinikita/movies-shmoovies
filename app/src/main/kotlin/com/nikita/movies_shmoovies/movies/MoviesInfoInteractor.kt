@@ -30,7 +30,8 @@ data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: Cre
                            val crew: List<Crew>?){
         data class Cast(val character: String,
                         val name: String,
-                        val profile_path: String) : RegularItem
+                        val profile_path: String,
+                        val id: Int) : RegularItem
 
         data class Crew(val name: String,
                         val job: String) : RegularItem
@@ -49,12 +50,5 @@ class MoviesInfoInteractor(val moviesService: MoviesService) : MovieInfoInteract
 
     fun getMovieCredits(id: String): MovieInformation.CrewAndCast {
         return moviesService.getMovieCredits(id)
-    }
-
-    fun createFakeCrew(): MovieInformation.CrewAndCast {
-        return MovieInformation.CrewAndCast(
-                List(10, { MovieInformation.CrewAndCast.Cast("Astronaut", "Ivan Dobsky", "234") }),
-                List(10, { MovieInformation.CrewAndCast.Crew("Bobby", "Homeless") })
-        )
     }
 }
