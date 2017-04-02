@@ -1,6 +1,8 @@
 package com.nikita.movies_shmoovies.movies
 
 import com.nikita.movies_shmoovies.common.network.MoviesService
+import com.nikita.movies_shmoovies.movies.adapters.RecyclerItem
+import com.nikita.movies_shmoovies.movies.adapters.RegularItem
 import kotlinx.coroutines.experimental.async
 
 interface MovieInfoInteractor {
@@ -10,8 +12,8 @@ interface MovieInfoInteractor {
 data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: CrewAndCast){
 
     data class MovieDetails(val original_title: String,
-                            val backdrop_path: String,
-                            val poster_path: String,
+                            val backdrop_path: String?,
+                            val poster_path: String?,
                             val overview: String,
                             val budget: Int,
                             val revenue: Int,
@@ -19,19 +21,19 @@ data class MovieInformation(val movieDetails: MovieDetails, val crewAndCast: Cre
                             val release_date: String,
                             val status: String,
                             val homepage: String,
-                            val genres: List<Genre>,
+                            val genres: List<Genre>?,
                             val vote_average: Float) {
-        data class Genre(val name: String)
+        data class Genre(val name: String) : RegularItem
     }
 
-    data class CrewAndCast(val cast: List<Cast>,
-                           val crew: List<Crew>){
+    data class CrewAndCast(val cast: List<Cast>?,
+                           val crew: List<Crew>?){
         data class Cast(val character: String,
                         val name: String,
-                        val profile_path: String)
+                        val profile_path: String) : RegularItem
 
         data class Crew(val name: String,
-                        val job: String)
+                        val job: String) : RegularItem
     }
 
 }

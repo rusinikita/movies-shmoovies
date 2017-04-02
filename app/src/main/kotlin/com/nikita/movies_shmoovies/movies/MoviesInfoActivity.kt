@@ -14,9 +14,7 @@ import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
 import com.nikita.movies_shmoovies.common.utils.findView
 import com.nikita.movies_shmoovies.common.utils.loadWithPlaceholder
 import com.nikita.movies_shmoovies.common.widgets.CircleDisplay
-import com.nikita.movies_shmoovies.movies.adapters.CastAdapter
-import com.nikita.movies_shmoovies.movies.adapters.CrewAdapter
-import com.nikita.movies_shmoovies.movies.adapters.GenresAdapter
+import com.nikita.movies_shmoovies.movies.adapters.*
 import kotlinx.android.synthetic.main.activity_movies_info.*
 import kotlinx.android.synthetic.main.movie_info.*
 import kotlinx.android.synthetic.main.movie_info_about.*
@@ -52,8 +50,14 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         super.setContent(content, pagination)
         content_view.visibility = View.VISIBLE
 
-        movie_poster.loadWithPlaceholder(content.movieDetails.poster_path, R.drawable.mis_poster_placeholder)
-        movie_background.loadWithPlaceholder(content.movieDetails.backdrop_path, R.drawable.mis_back_placeholder)
+        if (content.movieDetails.poster_path != null){
+            movie_poster.loadWithPlaceholder(content.movieDetails.poster_path, R.drawable.mis_poster_placeholder)
+        }
+
+        if (content.movieDetails.backdrop_path != null) {
+            movie_background.loadWithPlaceholder(content.movieDetails.backdrop_path, R.drawable.mis_back_placeholder)
+        }
+
         movie_title.text = content.movieDetails.original_title
         movie_year.text = content.movieDetails.release_date.substring(0,4)
         movie_overview.text = content.movieDetails.overview
@@ -63,9 +67,26 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         movie_release.text = content.movieDetails.release_date.replace("-",".")
         movie_status.text = content.movieDetails.status
         movie_url.text = content.movieDetails.homepage
-        movie_crew_recycler.adapter = CrewAdapter(content.crewAndCast.crew)
-        movie_cast_recycler.adapter = CastAdapter(content.crewAndCast.cast)
-        movie_genres_recycler.adapter = GenresAdapter(content.movieDetails.genres)
+
+//        TODO: REFACTOR THIS
+        if (content.crewAndCast.crew == null || content.crewAndCast.crew.isEmpty()){
+            movie_crew_recycler.adapter = CrewAdapter(listOf(ErrorContent(resources.getString(R.string.empty_list_error))))
+        } else {
+            movie_crew_recycler.adapter = CrewAdapter(content.crewAndCast.crew)
+        }
+
+        if (content.crewAndCast.cast == null || content.crewAndCast.cast.isEmpty()){
+            movie_cast_recycler.adapter = CastAdapter(listOf(ErrorContent(resources.getString(R.string.empty_list_error))))
+        } else {
+            movie_cast_recycler.adapter = CastAdapter(content.crewAndCast.cast)
+        }
+
+        if (content.movieDetails.genres == null || content.movieDetails.genres.isEmpty()){
+            movie_genres_recycler.adapter = GenresAdapter(listOf(ErrorContent(resources.getString(R.string.empty_list_error))))
+        } else {
+            movie_genres_recycler.adapter = GenresAdapter(content.movieDetails.genres)
+        }
+
 
         if(!content.movieDetails.homepage.isEmpty()){
             movie_url.setOnClickListener {

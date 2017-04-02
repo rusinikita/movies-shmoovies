@@ -22,4 +22,6 @@
     <string name="movie_length">min</string>
     <string name="user_score">User Score</string>
 
+    <string name="empty_list_error">No information given.</string>
+
 </resources>
