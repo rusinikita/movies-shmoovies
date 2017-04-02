@@ -23,11 +23,11 @@ interface MoviesApi {
   @GET("/3/movie/top_rated")
   fun getTop(@Query("api_key") apiKey: String): Call<ListResponse<Movie>>
 
-  @GET("/3/movie/446714")
+  @GET("/3/movie/{id}")
   fun getMovieDetails(@Path("id") id: String,
                       @Query("api_key") apiKey: String): Call<MovieInformation.MovieDetails>
 
-  @GET("/3/movie/446714/credits")
+  @GET("/3/movie/{id}/credits")
   fun getMovieCredits(@Path("id") id: String,
                       @Query("api_key") apiKey: String) : Call<MovieInformation.CrewAndCast>
 }
