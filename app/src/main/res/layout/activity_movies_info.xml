@@ -2,23 +2,75 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/mis_root">
 
-    <ScrollView
+     <android.support.design.widget.CoordinatorLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fitsSystemWindows="true"
+        android:id="@+id/mis_appbar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:id="@+id/movie_background"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/mis_back_placeholder"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.9"/>
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:id="@+id/mis_toolbar"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mis_scroll_view">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/content_view">
-                <include layout="@layout/movie_info_header"/>
-                <include layout="@layout/movie_info"/>
-                <include layout="@layout/movie_info_about"/>
-
+        android:id="@+id/mis_scroll_view"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/content_view">
+            <include layout="@layout/mis_header"/>
+            <include layout="@layout/movie_info"/>
+            <include layout="@layout/movie_info_about"/>
         </LinearLayout>
-    </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
+
+         <com.nikita.movies_shmoovies.common.widgets.RoundedImage
+             android:id="@+id/movie_poster"
+             android:layout_width="@dimen/poster_width"
+             android:layout_height="@dimen/poster_width"
+             android:layout_margin="8dp"
+             android:scaleType="centerCrop"
+             app:srcCompat="@drawable/mis_movie_poster_placeholder"
+             app:layout_anchor="@id/mis_appbar"
+             app:layout_anchorGravity="bottom|end"
+             app:civ_border_width="2dp"
+             android:clickable="false"/>
+
+     </android.support.design.widget.CoordinatorLayout>
 </FrameLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:background="@color/colorPrimary">
+
+        <com.nikita.movies_shmoovies.common.widgets.CircleDisplay
+            android:id="@+id/user_score"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/user_score_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/user_score"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/user_score"
+            android:text="@string/user_score"
+            android:textColor="@color/mis_header_main_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/movie_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/user_score_title"
+            android:layout_alignBaseline="@+id/user_score_title"
+            android:textColor="@color/mis_header_text"
+            android:layout_marginStart="24dp" />
+
+        <TextView
+            android:id="@+id/movie_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/movie_year"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/movie_year"
+            android:textColor="@color/mis_header_text" />
+
+    </RelativeLayout>
+</FrameLayout>

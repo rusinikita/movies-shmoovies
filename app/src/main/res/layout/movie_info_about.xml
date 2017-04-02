@@ -36,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/movie_genres_title"
-        android:layout_below="@+id/movie_genres_title" />
+        android:layout_below="@+id/movie_genres_title"
+        android:nestedScrollingEnabled="false"/>
 
     <TextView
         android:id="@+id/movie_status_title"

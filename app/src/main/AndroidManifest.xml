@@ -24,6 +24,10 @@
         <activity
             android:name=".movies.MoviesInfoActivity"
             android:label="@string/title_activity_movies_info"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme"></activity>
     </application>
 

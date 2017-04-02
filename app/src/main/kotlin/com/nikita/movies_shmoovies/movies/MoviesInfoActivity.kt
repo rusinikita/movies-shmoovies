@@ -1,24 +1,23 @@
 package com.nikita.movies_shmoovies.movies
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import android.widget.ImageView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.nikita.movies_shmoovies.R
 import com.nikita.movies_shmoovies.appModule
 import com.nikita.movies_shmoovies.common.mvp.BaseMvpActivity
-import com.nikita.movies_shmoovies.common.utils.findView
 import com.nikita.movies_shmoovies.common.utils.loadWithPlaceholder
 import com.nikita.movies_shmoovies.common.widgets.CircleDisplay
 import com.nikita.movies_shmoovies.movies.adapters.*
 import kotlinx.android.synthetic.main.activity_movies_info.*
+import kotlinx.android.synthetic.main.mis_header.*
 import kotlinx.android.synthetic.main.movie_info.*
 import kotlinx.android.synthetic.main.movie_info_about.*
-import kotlinx.android.synthetic.main.movie_info_header.*
 
 class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
 
@@ -50,6 +49,9 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         super.setContent(content, pagination)
         content_view.visibility = View.VISIBLE
 
+        val poster = findViewById(R.id.movie_poster) as ImageView
+        poster
+
         if (content.movieDetails.poster_path != null){
             movie_poster.loadWithPlaceholder(content.movieDetails.poster_path, R.drawable.mis_poster_placeholder)
         }
@@ -57,8 +59,7 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         if (content.movieDetails.backdrop_path != null) {
             movie_background.loadWithPlaceholder(content.movieDetails.backdrop_path, R.drawable.mis_back_placeholder)
         }
-
-        movie_title.text = content.movieDetails.original_title
+        mis_toolbar.title = content.movieDetails.original_title
         movie_year.text = content.movieDetails.release_date.substring(0,4)
         movie_overview.text = content.movieDetails.overview
         movie_budget.text = content.movieDetails.budget.toString()
