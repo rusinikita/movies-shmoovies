@@ -40,7 +40,7 @@ class PostersPresenter(private val behavior: Behavior) : BaseMvpPresenter<Poster
     }
 
     if (position == data.size-1 && behavior !is TopPostersBehavior){
-      loadContent(false, true)
+      loadContent(pullToRefresh = false, pagination = true)
     }
   }
   fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostersFragment.MoviesViewHolder {

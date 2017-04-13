@@ -51,6 +51,7 @@ class MoviesInfoActivity : BaseMvpActivity<MovieInformation>(), MoviesInfoView{
         movie_crew_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         movie_cast_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         movie_genres_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
     }
 
     override fun setContent(content: MovieInformation, pagination: Boolean) {

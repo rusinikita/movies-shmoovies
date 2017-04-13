@@ -1,7 +1,7 @@
 package com.nikita.movies_shmoovies.common.network
 
-import com.nikita.movies_shmoovies.actors.ActorApi
-import com.nikita.movies_shmoovies.actors.ActorInfoService
+import com.nikita.movies_shmoovies.common.network.ActorApi
+import com.nikita.movies_shmoovies.common.network.ActorInfoService
 import com.nikita.movies_shmoovies.common.DEFAULT_CONNECT_TIMEOUT
 import com.nikita.movies_shmoovies.common.MOVIE_DB_API_BASE_URL
 import com.squareup.moshi.Moshi

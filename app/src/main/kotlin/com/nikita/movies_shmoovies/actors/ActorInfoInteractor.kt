@@ -2,6 +2,7 @@ package com.nikita.movies_shmoovies.actors
 
 import com.nikita.movies_shmoovies.common.network.Movie
 import com.nikita.movies_shmoovies.actors.ActorInfoScreen.ActorInfo.ActorMovies
+import com.nikita.movies_shmoovies.common.network.ActorInfoService
 
 data class ActorInfoScreen (val actorInfo: ActorInfo, val actorMovies: ActorInfo.ActorMovies) {
     data class ActorInfo(val name : String,

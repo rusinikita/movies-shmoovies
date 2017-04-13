@@ -1,7 +1,7 @@
-package com.nikita.movies_shmoovies.actors
+package com.nikita.movies_shmoovies.common.network
 
 import com.nikita.movies_shmoovies.BuildConfig
-import com.nikita.movies_shmoovies.common.network.BaseService
+import com.nikita.movies_shmoovies.actors.ActorInfoScreen
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,7 +15,7 @@ interface ActorApi {
 
     @GET("3/person/{actor_id}/movie_credits")
     fun getActorMovies(@Path("actor_id") id: String,
-                     @Query("api_key") apiKey: String): Call<ActorInfoScreen.ActorInfo.ActorMovies>
+                       @Query("api_key") apiKey: String): Call<ActorInfoScreen.ActorInfo.ActorMovies>
 }
 
 class ActorInfoService(api: ActorApi) : BaseService<ActorApi>(api) {
