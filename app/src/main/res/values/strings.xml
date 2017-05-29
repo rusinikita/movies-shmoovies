@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Movies-Shmoovies</string>
+    <!--Main screen-->
+    <string name="posters_title_movies">Movies</string>
+    <string name="posters_title_tv_shows">Tv shows</string>
+    <string name="posters_title_peoples">Peoples</string>
+
+    <!--Movie info Screen-->
+    <string name="title_activity_movies_info">MoviesInfoActivity</string>
+
+    <string name="movie_overview">Overview</string>
+    <string name="movie_crew">Featured Crew</string>
+    <string name="movie_cast">Top Billed Cast</string>
+    <string name="more_button">more</string>
+
+    <string name="movie_data">Movie Data</string>
+    <string name="movie_status">Status: </string>
+    <string name="movie_release_date">Release Date: </string>
+    <string name="movie_runtime">Runtime: </string>
+    <string name="movie_genres">Genres: </string>
+    <string name="movie_budget">Budget:</string>
+    <string name="movie_revenue">Revenue: </string>
+    <string name="movie_currency">$</string>
+    <string name="movie_length">min</string>
+    <string name="user_score">User Score</string>
+
+    <string name="empty_list_error">No information given.</string>
+
+    <!--Actor info Screen-->
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="actor_biography">Biography</string>
+    <string name="actor_movies">Known For</string>
+    <string name="actor_imdb">LINKS</string>
+
+
+</resources>

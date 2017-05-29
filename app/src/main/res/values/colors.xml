@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/TMDB_blue</color>
+    <color name="colorPrimaryDark">@color/TMDB_dark_blue</color>
+    <color name="colorAccent">@color/TMDB_green</color>
+
+    <!--Common Colors-->
+    <color name="TMDB_blue">#081c24</color>
+    <color name="TMDB_dark_blue">#04171e</color>
+    <color name="TMDB_green">#00d373</color>
+    <color name="windowBackground">#212121</color>
+    <color name="black_60">#99000000</color>
+    <color name="white">#ffffff</color>
+
+    <!--Movie Info Screen-->
+    <color name="mis_header_bg">@color/TMDB_blue</color>
+    <color name="mis_header_main_text">#ffffff</color>
+    <color name="mis_header_text">#c7c7c7</color>
+
+    <color name="mis_gardient_start">#515d61</color>
+    <color name="mis_gardient_end">#081c24</color>
+    <color name="mis_crew_text">#546d74</color>
+
+    <color name="mis_about_bg">#ffffff</color>
+    <color name="mis_about_main_text">#000000</color>
+    <color name="mis_about_text">#1b1b1b</color>
+    <color name="mis_link">@color/TMDB_green</color>
+
+    <!--Actor info Screen-->
+    <color name="ais_title">#ffffff</color>
+    <color name="ais_text">#c7c7c7</color>
+    <color name="ais_links">@color/TMDB_green</color>
+
+
+
+
+</resources>
