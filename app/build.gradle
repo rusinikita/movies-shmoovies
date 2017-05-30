@@ -9,7 +9,7 @@ kapt {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.nikita.movies_shmoovies"
         minSdkVersion 19
@@ -18,7 +18,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'API_KEY', "\"65620ecf74374287192f4b2815b19be6\""
+        buildConfigField 'String', 'API_KEY', '"' + API_KEY + '"'
     }
 
     sourceSets {
